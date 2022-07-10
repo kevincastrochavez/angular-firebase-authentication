@@ -93,12 +93,16 @@ export class AuthService {
 
   // Sign in with Google
   GoogleAuth() {
+    console.log('Signing in');
+
     return this.AuthLogin(new auth.GoogleAuthProvider()).then((res: any) => {
       if (res) {
         this.router.navigate(['dashboard']);
       }
     });
   }
+
+  // rhSsKLtyjkPgukm5ueCefZepOGl2
 
   // Auth logic to run auth providers
   AuthLogin(provider: any) {
@@ -108,6 +112,8 @@ export class AuthService {
         this.ngZone.run(() => {
           this.router.navigate(['dashboard']);
         });
+        console.log(result.user?.uid);
+
         this.SetUserData(result.user);
       })
       .catch((error) => {
